@@ -21,6 +21,23 @@ npm run preview -- --port 4173 --strictPort
 
 `dist/` is a static site that can be hosted on a static hosting provider. The development server is not a production deployment. No secret or environment variable is required to build or run it.
 
+## GitHub Pages deployment
+
+The `.github/workflows/deploy-pages.yml` workflow builds and deploys `main` automatically. It can also be run manually from the repository's Actions tab. No SSH server, deployment key, or custom token is required; the deployment uses GitHub's built-in token and OIDC.
+
+One-time repository setting: open **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**. If a run failed before Pages was enabled, rerun it or select **Actions → Deploy QUYLIRE to GitHub Pages → Run workflow** after enabling it. The repository must be eligible for Pages under its GitHub plan and organization policy.
+
+The expected default address is `https://chen-yt.github.io/quylire-homesite/`. This address is not proof of a successful deployment; confirm the workflow succeeds and check the URL shown by GitHub Pages. The workflow reads the configured Pages base path so Vite generates the correct asset URLs for a project site or a future custom domain. Configure a custom domain in Pages settings separately; this workflow does not change DNS.
+
+To verify the project-path build locally:
+
+```sh
+npm run build -- --base /quylire-homesite/
+npm run preview -- --port 4173 --strictPort --base /quylire-homesite/
+```
+
+Then check the page and its assets under `/quylire-homesite/`. The regular `npm run build && npm test` commands continue to validate the root-path build.
+
 ## Browser verification
 
 ```sh
