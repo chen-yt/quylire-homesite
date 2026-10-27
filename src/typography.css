@@ -1,9 +1,19 @@
 /* Manrope is self-hosted through Fontsource and licensed under the SIL OFL.
    No request is made to an external font service. */
 @font-face {
-  font-family: 'Manrope';
+  font-family: "Manrope";
   font-style: normal;
   font-display: swap;
   font-weight: 200 800;
-  src: url('@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2') format('woff2');
+  src: url("@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Oswald";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 700;
+  src: url("@fontsource-variable/oswald/files/oswald-latin-wght-normal.woff2")
+    format("woff2");
 }

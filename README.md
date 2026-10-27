@@ -1,6 +1,6 @@
 # QUYLIRE brand website
 
-An English-language flow-meter brand website for visitors in the United States and Canada, including business buyers and visitors coming from Amazon. No prices, checkout, tracking scripts, or customer-account system.
+An English-language flow-meter brand website for visitors in the United States and Canada, including business buyers and visitors coming from Amazon. The orange/yellow palette, condensed headlines, circular motifs, and “Flow You Can Trust” tagline follow the brand-store screenshot supplied by the user. No prices, checkout, tracking scripts, or customer-account system.
 
 ## Development
 
@@ -45,23 +45,25 @@ npm run build
 npm test
 ```
 
-Tests use the cloud environment's `/usr/bin/chromium`. Set `PLAYWRIGHT_CHROMIUM_EXECUTABLE` to your browser's path on another machine. The test runner starts the production preview itself. Tests cover responsive layouts, mobile navigation, inquiry topic links, required-field validation, encoded email drafts, email copying, Amazon link configuration, and the privacy dialog. They do not send email or verify the recipient mailbox.
+Tests use the cloud environment's `/usr/bin/chromium`. Set `PLAYWRIGHT_CHROMIUM_EXECUTABLE` to your browser's path on another machine. The test runner starts the production preview itself. The 14 checks cover responsive layouts, mobile navigation, inquiry topics, required-field validation, encoded email drafts, copying, Amazon links, privacy, no-JavaScript form safety, product filters, product details, image loading, and preserving selected products in inquiries. They do not send email or verify the recipient mailbox.
 
 ## Content and contact behavior
 
 - `index.html`: page structure and English copy; includes the supplied Amazon brand-store URL and `contact@quylire.com`.
 - `src/style.css`: responsive visual system. Colors are defined at the top.
-- `src/typography.css`: self-hosted Manrope variable font from Fontsource (SIL Open Font License); no external font-service requests.
+- `src/typography.css`: self-hosted Manrope and Oswald variable fonts from Fontsource (SIL Open Font License); no external font-service requests.
+- `src/catalog.js`: local product catalog, family filters, product detail dialog, and selection for inquiries. The screenshot supplies the family names and connection-size labels: aluminum alloy (3/4, 1, 1.5, 2, 3 inches, with the 1-inch model shown in the featured banner), stainless steel (3/4, 1, 2 inches), garden water, and camlock (2, 3 inches). No model/SKU numbers, flow ranges, accuracy, pressure/temperature limits, or certifications are inferred.
 - `src/main.js`: mobile menu, local inquiry form, clipboard, and privacy dialog.
 - `src/inquiry.js`: locally creates an encoded `mailto:` draft. There is no email API or backend. Visitors must send the email in their own email app. A copy-inquiry fallback is provided. Visitors' form data is not persisted by the website.
-- `public/favicon.svg`: provisional monogram. The wordmark, illustration, and colors are draft treatments pending final brand assets.
+- `public/images/`: four AI-generated illustrative product renders based on the user's screenshot, optimized to transparent WebP. They are explicitly labeled as illustrations on the page and in alt text; the same family image is reused for size options and does not document size-specific geometry. Replace with approved, model-specific product photographs before treating them as a definitive catalog.
+- `public/favicon.svg`: provisional monogram. The text wordmark remains provisional pending the original logo.
 
-Product imagery, detailed product listings, model names, specifications, certifications, brand-history claims, and technical documents have intentionally not been invented. The product range currently has an explicit information-pending state; the abstract illustrations are not representations of actual products.
+The screenshot is the reference for visual direction, family names, and shown size options. Product details link directly to an inquiry without overwriting the visitor's message. A selected product is visible in the form, can be cleared, and is included in the email draft. Technical specifications, certifications, company-history claims, and manuals remain pending. The screenshot's “IP68” wording has not been generalized to all models or presented as an independently verified certification.
 
 ## Before public launch
 
-1. Replace the provisional brand treatment with the approved logo and brand assets.
-2. Supply and add product photos, model names, confirmed specifications, application limits, and any approved manuals. Add individual product pages once the actual range is known.
-3. Review the English copy and privacy notice, verify the Amazon store opens, and confirm `contact@quylire.com` can receive mail. Amazon was blocked by the onboarding network policy, so its visual design and live contents were not verified.
+1. Replace the provisional wordmark with the approved logo and brand assets.
+2. Replace generated illustrations with original product photographs and confirm model names, connection standards, specifications, application limits, and any approved manuals. The current detail dialogs show only the family and size information available from the screenshot.
+3. Review the English copy and privacy notice, verify the Amazon store opens, and confirm `contact@quylire.com` can receive mail. Amazon's live page was blocked by the onboarding network policy; the user-supplied screenshot is the design reference.
 4. If a direct form submission is wanted, integrate and test a mail backend with spam controls and an appropriate privacy notice. The current form clearly says it opens an email draft.
 5. Choose hosting, configure the domain and HTTPS, and verify email behavior on target devices. The source code and a local smoke test do not constitute a public deployment.
